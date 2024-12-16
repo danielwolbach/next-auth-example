@@ -16,7 +16,7 @@ import { and, eq } from "drizzle-orm";
 import { DatabaseError } from "pg";
 import bcrypt from "bcrypt";
 import { sendMail } from "~/lib/mail";
-import { APP_BASE_URL } from "../environment";
+import { APP_NAME, APP_URL } from "../environment";
 import { getUser } from "../auth";
 
 export async function createAccount(
@@ -188,10 +188,10 @@ export async function requestAccountVerification(
         )[0];
 
         // TODO Do this properly.
-        sendMail(
+        await sendMail(
             user.email,
-            "Verify your account",
-            `Click here to verify: ${APP_BASE_URL}/account/verify/${token.id}`
+            `Verify your ${APP_NAME} account`,
+            `Visit this page to verify your account: ${APP_URL}/account/verify/${token.id}`
         );
     } catch (_error) {
         return {
@@ -296,10 +296,10 @@ export async function requestAccountRecovery(
         )[0];
 
         // TODO Do this properly.
-        sendMail(
+        await sendMail(
             user.email,
-            "Recover your account",
-            `Click here to recover: ${APP_BASE_URL}/account/recover/${token.id}`
+            `Recover your ${APP_NAME} account`,
+            `Visit this page to recover your account: ${APP_URL}/account/recover/${token.id}`
         );
     } catch (_error) {
         return {

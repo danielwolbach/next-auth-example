@@ -12,7 +12,10 @@ export default async function Page() {
                 <p>
                     You are not signed in. You can either{" "}
                     <TextLink href="/account/auth/sign-in">sign in</TextLink> or{" "}
-                    <TextLink href="/account/create">sign up</TextLink>.
+                    <TextLink href="/account/create">
+                        create an account
+                    </TextLink>
+                    .
                 </p>
             </>
         );

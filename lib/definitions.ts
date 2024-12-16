@@ -8,7 +8,8 @@ export const SignUpSchema = z
             .email({
                 message: "Must be a valid email address",
             })
-            .trim(),
+            .trim()
+            .toLowerCase(),
         password: z
             .string()
             .min(8, "Must be at least 8 characters")
@@ -33,7 +34,8 @@ export const SignInSchema = z.object({
         .email({
             message: "Must be a valid email address",
         })
-        .trim(),
+        .trim()
+        .toLowerCase(),
     password: z.string().nonempty("Must not be empty").trim(),
 });
 
@@ -43,7 +45,8 @@ export const RequestRecoverAccountSchema = z.object({
         .email({
             message: "Must be a valid email address",
         })
-        .trim(),
+        .trim()
+        .toLowerCase(),
 });
 
 export const RecoverAccountSchema = z

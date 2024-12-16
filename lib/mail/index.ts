@@ -1,7 +1,7 @@
 import nodemailer from "nodemailer";
 import {
-    APP_BASE_URL,
     APP_NAME,
+    EMAIL_ADDRESS,
     EMAIL_HOST,
     EMAIL_PASSWORD,
     EMAIL_PORT,
@@ -21,16 +21,18 @@ const TRANSPORTER = nodemailer.createTransport({
 
 export async function sendMail(to: string, subject: string, text: string) {
     const mailOptions = {
-        from: `${APP_NAME} <noreply@${APP_BASE_URL}>`,
+        from: `${APP_NAME} <${EMAIL_ADDRESS}>`,
         to,
         subject,
         text,
-        html: `<p>${text}</p>`,
     };
+
+    console.log("Sending email: ", JSON.stringify(mailOptions));
 
     try {
         await TRANSPORTER.sendMail(mailOptions);
     } catch (error) {
         console.error("Error sending email: ", error);
+        throw error;
     }
 }

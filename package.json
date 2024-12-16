@@ -2,9 +2,11 @@
     "name": "next-auth-from-scratch",
     "version": "1.0.0",
     "scripts": {
-        "dev": "next dev",
+        "dev": "next dev --turbopack",
         "lint": "prettier . --check && next lint",
-        "format": "prettier --write ."
+        "format": "prettier --write .",
+        "build": "drizzle-kit migrate && next build",
+        "start": "drizzle-kit migrate && next start"
     },
     "dependencies": {
         "@paralleldrive/cuid2": "^2.2.2",
